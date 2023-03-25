@@ -3,14 +3,14 @@ import { sleep } from '../mod.ts'
 
 /**
  * Return an asynchronous generator that yield indefinitely the callback at least after the specified delay
- * 
+ *
  * @example
  * ```ts
  * for await (const result of interval(fetch, 60_000, {}, 'https://api.example.com')) {
  *     console.log(result)
  * }
  * //log some api result every minutes
- * 
+ *
  * const idRef = [1] //Use array to keep reference of the variable
  * function fetchUser([id]: number) {
  *     return fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
@@ -36,9 +36,14 @@ import { sleep } from '../mod.ts'
  * @param {unknown[]} args - The arguments for the callback
  * @returns A promise that resolves to the value returned by the callback.
  */
-export async function* interval<TArgs extends unknown[], TYield = unknown>(callback: Callback<TArgs, TYield>, delay: ms, { signal }: { signal?: AbortSignal } = {}, ...args: TArgs): AsyncGenerator<TYield, void, void> {
-    while (!signal?.aborted ?? true) {
-        await sleep(delay)
-        yield callback(...args)
-    }
+export async function* interval<TArgs extends unknown[], TYield = unknown>(
+	callback: Callback<TArgs, TYield>,
+	delay: ms,
+	{ signal }: { signal?: AbortSignal } = {},
+	...args: TArgs
+): AsyncGenerator<TYield, void, void> {
+	while (!signal?.aborted ?? true) {
+		await sleep(delay)
+		yield callback(...args)
+	}
 }

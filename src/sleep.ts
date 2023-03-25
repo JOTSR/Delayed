@@ -15,17 +15,20 @@ import type { ms } from '../types.ts'
  * @param {number} delay - The amount of time to wait in milliseconds.
  * @param {{signal: AbortSignal}=} { signal } - Optional abort controller signal to stop sleeping.
  */
-export function sleep(delay: ms, { signal }: { signal?: AbortSignal } = {}): Promise<void> {
-    return new Promise((resolve, reject) => {
-        const timer = setTimeout(resolve, delay)
+export function sleep(
+	delay: ms,
+	{ signal }: { signal?: AbortSignal } = {},
+): Promise<void> {
+	return new Promise((resolve, reject) => {
+		const timer = setTimeout(resolve, delay)
 
-        signal?.addEventListener('abort', () => {
-            clearTimeout(timer)
-            reject(signal.reason)
-        }, {
-            once: true
-        })
-    })
+		signal?.addEventListener('abort', () => {
+			clearTimeout(timer)
+			reject(signal.reason)
+		}, {
+			once: true,
+		})
+	})
 }
 
 /**
@@ -38,6 +41,6 @@ export function sleep(delay: ms, { signal }: { signal?: AbortSignal } = {}): Pro
  * @param {number} delay - The amount of time to sleep in milliseconds.
  */
 export function sleepSync(delay: ms): void {
-    const end = Date.now() + delay
-    while (Date.now() < end);
+	const end = Date.now() + delay
+	while (Date.now() < end);
 }

@@ -2,7 +2,7 @@ import type { Callback, ms } from '../types.ts'
 
 /**
  * Execute the callback at least after the specified delay
- * 
+ *
  * @example
  * ```ts
  * const { status } = await timeout(() => fetch('https://deno.land'), 500)
@@ -20,16 +20,21 @@ import type { Callback, ms } from '../types.ts'
  * @param {unknown[]} args - The arguments of the callback
  * @returns A promise that resolves to the value returned by the callback.
  */
-export async function timeout<TArgs extends unknown[], TReturn = unknown>(callback: Callback<TArgs, TReturn>, delay: ms, { signal }: { signal?: AbortSignal } = {}, ...args: TArgs): Promise<TReturn> {
-    await new Promise((resolve, reject) => {
-        const timer = setTimeout(resolve, delay)
+export async function timeout<TArgs extends unknown[], TReturn = unknown>(
+	callback: Callback<TArgs, TReturn>,
+	delay: ms,
+	{ signal }: { signal?: AbortSignal } = {},
+	...args: TArgs
+): Promise<TReturn> {
+	await new Promise((resolve, reject) => {
+		const timer = setTimeout(resolve, delay)
 
-        signal?.addEventListener('abort', () => {
-            clearTimeout(timer)
-            reject(signal.reason)
-        }, {
-            once: true
-        })
-    })
-    return callback(...args)
+		signal?.addEventListener('abort', () => {
+			clearTimeout(timer)
+			reject(signal.reason)
+		}, {
+			once: true,
+		})
+	})
+	return callback(...args)
 }
