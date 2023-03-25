@@ -6,11 +6,26 @@ import type { ms } from '../types.ts'
  * ```ts
  * await sleep(500)
  * //wait 500ms
+ * const ac = new AbortController()
+ * await sleep(1_000_000, ac)
+ * //ac called elsewhere, eg: callback
+ * ac.abort()
+ * //abort sleep before long sleep
  * ```
  * @param {number} delay - The amount of time to wait in milliseconds.
+ * @param {{signal: AbortSignal}=} { signal } - Optional abort controller signal to stop sleeping.
  */
-export function sleep(delay: ms): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, delay))
+export function sleep(delay: ms, { signal }: { signal?: AbortSignal } = {}): Promise<void> {
+    return new Promise((resolve, reject) => {
+        const timer = setTimeout(resolve, delay)
+
+        signal?.addEventListener('abort', () => {
+            clearTimeout(timer)
+            reject(signal.reason)
+        }, {
+            once: true
+        })
+    })
 }
 
 /**
