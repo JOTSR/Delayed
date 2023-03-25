@@ -6,6 +6,9 @@ import type { ms } from '../types.ts'
  * ```ts
  * await sleep(500)
  * //wait 500ms
+ * ```
+ * @example
+ * ```ts
  * const ac = new AbortController()
  * await sleep(1_000_000, ac)
  * //ac called elsewhere, eg: callback

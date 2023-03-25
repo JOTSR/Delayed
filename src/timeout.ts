@@ -7,8 +7,14 @@ import type { Callback, ms } from '../types.ts'
  * ```ts
  * const { status } = await timeout(() => fetch('https://deno.land'), 500)
  * //wait 500ms and then status === 200
+ * ```
+ * @example
+ * ```ts
  * timeout(console.log, 1000, {}, 'delayed', 1000, 's')
  * //print the message "delayed 1000 s" after 1s
+ * ```
+ * @example
+ * ```ts
  * const ac = new AbortController()
  * timeout(exit, 1000, ac, 1)
  * ac.abort()

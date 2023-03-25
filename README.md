@@ -42,11 +42,21 @@ function fetchUser([id]: number) {
 	return fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
 }
 
-for await (const response of interval(fetchUser, 500, idRef)) {
+for await (const response of interval(fetchUser, 500, {}, idRef)) {
 	if (!response.ok) break
 	const user = await response.json()
 	console.log(user, idRef[0]++)
 }
 
 //print one of all 10 users every 500ms until get 404
+```
+
+Support abort signals
+
+```ts
+const ac = new AbortController()
+await sleep(1_000_000, ac)
+//ac called elsewhere, eg: callback
+ac.abort()
+//abort sleep before long sleep
 ```

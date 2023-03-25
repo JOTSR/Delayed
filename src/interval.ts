@@ -10,7 +10,9 @@ import { sleep } from '../mod.ts'
  *     console.log(result)
  * }
  * //log some api result every minutes
- *
+ * ```
+ * @example
+ * ```ts
  * const idRef = [1] //Use array to keep reference of the variable
  * function fetchUser([id]: number) {
  *     return fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
@@ -21,6 +23,9 @@ import { sleep } from '../mod.ts'
  *     console.log(user, idRef[0]++)
  * }
  * //print one of all 10 users every 500ms until get 404
+ * ```
+ * @example
+ * ```ts
  * const ac = new AbortController()
  * let index = 0
  * for await (const user of interval(getUser, 500, ac, index++)) {
