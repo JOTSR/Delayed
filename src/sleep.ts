@@ -2,12 +2,12 @@ import type { ms } from '../types.ts'
 
 /**
  * Asynchronous sleep during the specified delay.
- * @example
+ * @example <caption>Async sleep</caption>
  * ```ts
  * await sleep(500)
  * //wait 500ms
  * ```
- * @example
+ * @example <caption>Use abort controller</caption>
  * ```ts
  * const ac = new AbortController()
  * await sleep(1_000_000, ac)
@@ -36,7 +36,7 @@ export function sleep(
 
 /**
  * Synchronous sleep during the specified delay.
- * @example
+ * @example <caption>Sync sleep</caption>
  * ```ts
  * sleepSync(200)
  * //wait 200ms

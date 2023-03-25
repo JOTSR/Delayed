@@ -3,17 +3,17 @@ import type { Callback, ms } from '../types.ts'
 /**
  * Execute the callback at least after the specified delay
  *
- * @example
+ * @example <caption>Execute arrow function</caption>
  * ```ts
  * const { status } = await timeout(() => fetch('https://deno.land'), 500)
  * //wait 500ms and then status === 200
  * ```
- * @example
+ * @example <caption>Execute callback with arguments</caption>
  * ```ts
  * timeout(console.log, 1000, {}, 'delayed', 1000, 's')
  * //print the message "delayed 1000 s" after 1s
  * ```
- * @example
+ * @example <caption>Use abort controller</caption>
  * ```ts
  * const ac = new AbortController()
  * timeout(exit, 1000, ac, 1)

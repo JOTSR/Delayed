@@ -4,14 +4,14 @@ import { sleep } from '../mod.ts'
 /**
  * Return an asynchronous generator that yield indefinitely the callback at least after the specified delay
  *
- * @example
+ * @example <caption>Simple periodic execution</caption>
  * ```ts
  * for await (const result of interval(fetch, 60_000, {}, 'https://api.example.com')) {
  *     console.log(result)
  * }
  * //log some api result every minutes
  * ```
- * @example
+ * @example <caption>Periodic incremental fetching</caption>
  * ```ts
  * const idRef = [1] //Use array to keep reference of the variable
  * function fetchUser([id]: number) {
@@ -24,7 +24,7 @@ import { sleep } from '../mod.ts'
  * }
  * //print one of all 10 users every 500ms until get 404
  * ```
- * @example
+ * @example <caption>Use abort controller</caption>
  * ```ts
  * const ac = new AbortController()
  * let index = 0
