@@ -47,7 +47,7 @@ export async function* interval<TArgs extends unknown[], TYield = unknown>(
 	{ signal }: { signal?: AbortSignal } = {},
 	...args: TArgs
 ): AsyncGenerator<TYield, void, void> {
-	while (!signal?.aborted ?? true) {
+	while (!(signal?.aborted ?? false)) {
 		await sleep(delay)
 		yield callback(...args)
 	}
