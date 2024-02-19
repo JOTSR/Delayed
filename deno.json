@@ -1,4 +1,7 @@
 {
+	"name": "@jotsr/delayed",
+	"version": "2.1.0",
+	"exports": "./mod.ts",
 	"fmt": {
 		"options": {
 			"semiColons": false,
