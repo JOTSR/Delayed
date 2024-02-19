@@ -1,8 +1,8 @@
 # Delayed
 
-[![Tags](https://img.shields.io/github/v/release/JOTSR/Delayed)](https://github.com/JOTSR/Delayed/releases)
-[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/delayed/mod.ts)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Tags](https://img.shields.io/github/v/tag/JOTSR/Delayed?style=flat-square&label=jsr)](https://jsr.io/@jotsr/delayed)
+[![deno doc](https://img.shields.io/badge/deno-doc-blue?style=flat-square)](https://jsr.io/@jotsr/delayed/doc)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 Delayed is a simple module that provide an asynchronous approach to interval,
 delay and timeout.
